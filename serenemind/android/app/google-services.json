@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "747212084608",
+    "project_id": "serenemind-dd752",
+    "storage_bucket": "serenemind-dd752.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747212084608:android:4aee30e44949404f8e9d65",
+        "android_client_info": {
+          "package_name": "com.example.serenemind"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjILfRiiLhBC6WVgeLiFAsSBm7mMYTaW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

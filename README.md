@@ -109,8 +109,8 @@ O aplicativo Serenemind permite que os usuários selecionem como estão se senti
 
 1. Execute o aplicativo:
 
-```bash
-flutter run
+   ```bash
+   flutter run
 
 2. Selecione uma emoção na tela principal.
 

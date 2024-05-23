@@ -41,19 +41,20 @@ O aplicativo Serenemind permite que os usuários selecionem como estão se senti
 
 2. Instale as dependências:
 
- ```bash
+   ```bash
    flutter pub get
+
 
 ## Configuração
 
 1. Crie um arquivo config.dart em lib/ e adicione suas chaves de API do OpenAI e do Spotify:
 
-```dart
-class Config {
-  static const String openaiApiKey = 'SUA_OPENAI_API_KEY';
-  static const String spotifyClientId = 'SEU_SPOTIFY_CLIENT_ID';
-  static const String spotifyClientSecret = 'SEU_SPOTIFY_CLIENT_SECRET';
-}
+   ```dart
+   class Config {
+     static const String openaiApiKey = 'SUA_OPENAI_API_KEY';
+     static const String spotifyClientId = 'SEU_SPOTIFY_CLIENT_ID';
+     static const String spotifyClientSecret = 'SEU_SPOTIFY_CLIENT_SECRET';
+   }
 
 2. Configure os redirecionamentos de URL no Spotify Developer Dashboard:
 
@@ -61,48 +62,48 @@ class Config {
 
 3. Configure o AndroidManifest.xml para suportar o esquema de URL personalizado:
 
-```xml
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application
-        android:label="serenemind"
-        android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:launchMode="singleTop"
-            android:taskAffinity=""
-            android:theme="@style/LaunchTheme"
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-            android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustResize">
-            <meta-data
-              android:name="io.flutter.embedding.android.NormalTheme"
-              android:resource="@style/NormalTheme"
-              />
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="serenemind" android:host="callback" />
-            </intent-filter>
-        </activity>
-        <meta-data
-            android:name="flutterEmbedding"
-            android:value="2" />
-    </application>
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.PROCESS_TEXT"/>
-            <data android:mimeType="text/plain"/>
-        </intent>
-    </queries>
-    <uses-permission android:name="android.permission.INTERNET"/>
-</manifest>
+   ```xml
+   <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+       <application
+           android:label="serenemind"
+           android:name="${applicationName}"
+           android:icon="@mipmap/ic_launcher">
+           <activity
+               android:name=".MainActivity"
+               android:exported="true"
+               android:launchMode="singleTop"
+               android:taskAffinity=""
+               android:theme="@style/LaunchTheme"
+               android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+               android:hardwareAccelerated="true"
+               android:windowSoftInputMode="adjustResize">
+               <meta-data
+                 android:name="io.flutter.embedding.android.NormalTheme"
+                 android:resource="@style/NormalTheme"
+                 />
+               <intent-filter>
+                   <action android:name="android.intent.action.MAIN"/>
+                   <category android:name="android.intent.category.LAUNCHER"/>
+               </intent-filter>
+               <intent-filter>
+                   <action android:name="android.intent.action.VIEW" />
+                   <category android:name="android.intent.category.DEFAULT" />
+                   <category android:name="android.intent.category.BROWSABLE" />
+                   <data android:scheme="serenemind" android:host="callback" />
+               </intent-filter>
+           </activity>
+           <meta-data
+               android:name="flutterEmbedding"
+               android:value="2" />
+       </application>
+       <queries>
+           <intent>
+               <action android:name="android.intent.action.PROCESS_TEXT"/>
+               <data android:mimeType="text/plain"/>
+           </intent>
+       </queries>
+       <uses-permission android:name="android.permission.INTERNET"/>
+   </manifest>
 
 ## Uso
 

@@ -11,7 +11,7 @@ class ChatGPTService {
       Uri.parse(apiUrl),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${Config.openaiApiKey}', // Substitua YOUR_API_KEY_HERE pela sua chave de API do OpenAI
+        'Authorization': 'Bearer ${"Config.openaiApiKey"}', // Substitua YOUR_API_KEY_HERE pela sua chave de API do OpenAI
       },
       body: jsonEncode({
         'model': 'text-davinci-003',
@@ -34,7 +34,7 @@ class ChatGPTService {
       Uri.parse(apiUrl),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${Config.openaiApiKey}', // Substitua YOUR_API_KEY_HERE pela sua chave de API do OpenAI
+        'Authorization': 'Bearer ${"Config.openaiApiKey"}', // Substitua YOUR_API_KEY_HERE pela sua chave de API do OpenAI
       },
       body: jsonEncode({
         'model': 'text-davinci-003',

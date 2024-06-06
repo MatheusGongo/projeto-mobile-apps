@@ -33,8 +33,8 @@ class SpotifyService {
         'grant_type': 'authorization_code',
         'code': code,
         'redirect_uri': 'serenemind://callback',
-        'client_id': Config.spotifyClientId,
-        'client_secret': Config.spotifyClientSecret,
+        'client_id': "Config.spotifyClientId",
+        'client_secret': "Config.spotifyClientSecret",
       },
     );
 

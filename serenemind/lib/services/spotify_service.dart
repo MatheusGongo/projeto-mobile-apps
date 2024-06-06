@@ -1,7 +1,7 @@
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import '../config.dart';
 
 class SpotifyService {
   String? accessToken;
@@ -9,7 +9,7 @@ class SpotifyService {
   Future<void> authenticate() async {
     final authUrl = Uri.https('accounts.spotify.com', '/authorize', {
       'response_type': 'code',
-      'client_id': "Config.spotifyClientId",
+      'client_id': Config.spotifyClientId,
       'scope': 'playlist-read-private',
       'redirect_uri': 'serenemind://callback',
     }).toString();
@@ -33,8 +33,8 @@ class SpotifyService {
         'grant_type': 'authorization_code',
         'code': code,
         'redirect_uri': 'serenemind://callback',
-        'client_id': "Config.spotifyClientId",
-        'client_secret': "Config.spotifyClientSecret",
+        'client_id': Config.spotifyClientId,
+        'client_secret': Config.spotifyClientSecret,
       },
     );
 

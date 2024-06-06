@@ -9,7 +9,7 @@ class SpotifyService {
   Future<void> authenticate() async {
     final authUrl = Uri.https('accounts.spotify.com', '/authorize', {
       'response_type': 'code',
-      'client_id': Config.spotifyClientId,
+      'client_id': "Config.spotifyClientId",
       'scope': 'playlist-read-private',
       'redirect_uri': 'serenemind://callback',
     }).toString();

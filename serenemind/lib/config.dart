@@ -1,5 +1,5 @@
 class Config {
-  static const openaiApiKey = '';
+/*   static const openaiApiKey = '';
   static const spotifyClientId = '';
-  static const spotifyClientSecret = '';
+  static const spotifyClientSecret = ''; */
 }

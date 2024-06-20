@@ -1,72 +1,46 @@
-import 'package:flutter_web_auth/flutter_web_auth.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../config.dart';
+import 'package:http/http.dart' as http;
 
 class SpotifyService {
-  String? accessToken;
+  final String clientId;
+  final String clientSecret;
 
-  Future<void> authenticate() async {
-    final authUrl = Uri.https('accounts.spotify.com', '/authorize', {
-      'response_type': 'code',
-      'client_id': Config.spotifyClientId,
-      'scope': 'playlist-read-private',
-      'redirect_uri': 'serenemind://callback',
-    }).toString();
+  SpotifyService({required this.clientId, required this.clientSecret});
 
-    final result = await FlutterWebAuth.authenticate(
-      url: authUrl,
-      callbackUrlScheme: "serenemind"
-    );
-
-    final code = Uri.parse(result).queryParameters['code'];
-    if (code == null) {
-      throw Exception('Failed to get authorization code');
-    }
-
+  Future<String> getAccessToken() async {
     final response = await http.post(
       Uri.parse('https://accounts.spotify.com/api/token'),
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Basic ' + base64Encode(utf8.encode('$clientId:$clientSecret')),
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: {
-        'grant_type': 'authorization_code',
-        'code': code,
-        'redirect_uri': 'serenemind://callback',
-        'client_id': Config.spotifyClientId,
-        'client_secret': Config.spotifyClientSecret,
+        'grant_type': 'client_credentials',
       },
     );
 
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      accessToken = data['access_token'];
+      final jsonResponse = jsonDecode(response.body);
+      return jsonResponse['access_token'];
     } else {
-      throw Exception('Failed to authenticate');
+      throw Exception('Failed to get access token');
     }
   }
 
-  Future<List<String>> getPlaylists(String emotion) async {
-    if (accessToken == null) {
-      await authenticate();
-    }
-
+  Future<List<dynamic>> getPlaylists(String emotion) async {
+    final token = await getAccessToken();
     final response = await http.get(
       Uri.parse('https://api.spotify.com/v1/search?q=$emotion&type=playlist'),
       headers: {
-        'Authorization': 'Bearer $accessToken',
+        'Authorization': 'Bearer $token',
       },
     );
 
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      List<String> playlists = [];
-      for (var item in data['playlists']['items']) {
-        playlists.add(item['name']);
-      }
-      return playlists;
+      final jsonResponse = jsonDecode(response.body);
+      return jsonResponse['playlists']['items'];
     } else {
-      throw Exception('Failed to fetch playlists');
+      throw Exception('Failed to load playlists');
     }
   }
 }

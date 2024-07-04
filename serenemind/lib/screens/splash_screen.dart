@@ -45,7 +45,7 @@ class SplashScreen extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Deixa nos te ajudar',
+                  'Deixa-nos te ajudar',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,

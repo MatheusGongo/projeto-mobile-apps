@@ -1,3 +1,15 @@
+buildscript {
+    ext.kotlin_version = '1.6.0' // Atualize para a versão desejada do Kotlin
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.2' // Verifique e atualize para a versão mais recente compatível
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 allprojects {
     repositories {
         google()

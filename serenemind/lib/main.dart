@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:serenemind/screens/splash_screen.dart';
 import 'screens/emotion_selection_screen.dart';
 
 void main() {
@@ -23,8 +24,9 @@ class SerenemindApp extends StatelessWidget {
       }
     });
 
-    return MaterialApp(
-      home: EmotionSelectionScreen(),
+     return MaterialApp(
+      title: 'Serenemind',
+      home: SplashScreen(),
     );
   }
 }

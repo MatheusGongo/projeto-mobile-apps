@@ -41,29 +41,63 @@ class _EmotionResultScreenState extends State<EmotionResultScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Playlists para ${widget.emotion.name}'),
-        backgroundColor: Colors.deepPurple,
+        title: Text('Playlists para a emoção: ${widget.emotion.name}'),
+        backgroundColor: Colors.purple,
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+        centerTitle: true,
       ),
       body: playlists.isEmpty
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
+              padding: EdgeInsets.all(10),
               itemCount: playlists.length,
               itemBuilder: (context, index) {
                 final playlist = playlists[index];
                 return Card(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                   elevation: 5,
-                  margin: EdgeInsets.symmetric(vertical: 10),
+                  margin: EdgeInsets.symmetric(vertical: 8),
                   child: ListTile(
-                    title: Text(playlist['name']),
-                    subtitle: Text('by ${playlist['owner']['display_name']}'),
+                    contentPadding: EdgeInsets.all(10),
+                    leading: Icon(
+                      Icons.music_note,
+                      color: Colors.purple,
+                    ),
+                    title: Text(
+                      playlist['name'],
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'by ${playlist['owner']['display_name']}',
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.purple,
+                      size: 16,
+                    ),
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PlaylistDetailScreen(playlist: playlist),
+                          builder: (context) => PlaylistDetailScreen(
+                            playlistId: playlist['id'],
+                            playlistName: playlist['name'],
+                            ownerName: playlist['owner']['display_name'],
+                            description: playlist['description'],
+                            externalUrl: playlist['external_urls']['spotify'],
+                          ),
                         ),
                       );
                     },
